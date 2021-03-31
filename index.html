@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html>
+<title>Supply Chain</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6
+ {
+  font-family: "Raleway", sans-serif;
+ 
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #008CBA;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #008CBA;
+}
+
+}
+.container{
+  position: relative;
+  width: 400px;
+  background: #111;
+  padding: 20px 30px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container .post{
+  display: none;
+}
+.container .text{
+  font-size: 25px;
+  color: #666;
+  font-weight: 500;
+}
+.container .edit{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 16px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+</style>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <!--<img src="/w3images/avatar_g2.jpg" style="width:45%;" class="w3-round"><br><br>-->
+    <h4><b>SUPPLY CHAIN</b></h4>
+    
+  </div>
+  <div class="w3-bar-block">
+    <a href="#portfolio" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Provide Feedbacks</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Verification details</a> 
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>Helpline</a>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+  <!-- Header -->
+  <header id="portfolio">
+    <a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+    <h1><b>PROVIDE FEEDBACK</b></h1>
+
+    </div>
+  </header>
+  
+  <!-- First Photo Grid
+  <div class="w3-row-padding">
+    <div class="w3-third w3-container w3-margin-bottom">
+
+      <div class="w3-container w3-white">
+
+        <p class="nameofmedicine"><b>xxxxxx</b></p>
+        <p>90%</p>
+        <p class="description">xxxxxx</p>
+      </div>
+    </div>
+-->
+
+
+{% for row in rows %}
+
+    <div class="w3-third w3-container w3-margin-bottom"  >
+
+      <div class="w3-container w3-white" id={{rows.index(row)+1}} onclick="document.getElementById('id03').style.display='block';myFunc(this.id);">
+        <!--<p ><b>{{rows.index(row)+1}}</b></p>-->
+        <p id="medname" ><b>{{row['med_name']}}</b></p>
+        <p id="original">Originality:</p>
+        <p id="medman"  >{{row['manufacturer']}}</p>
+        <p id="medtype"  >{{row['type']}}</p>
+      </div>
+    </div>
+    
+
+  {% endfor %}
+
+
+
+  <!--Modal-->
+
+  <div id="id03" class="w3-modal">
+    <div class="w3-modal-content w3-card-4">
+      <header class="w3-container w3-teal">
+        <span onclick="document.getElementById('id03').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <h3>Give us your feedback</h3>
+      </header>
+      <div class="w3-container">
+        <p id="mednamee"></p>
+        <p id="medtypee"><b></b></p>
+        <p id="meddesc"><b></b></p>
+
+        
+          
+                <input type="radio" id="originalradio" name="originality" value="original">
+              <label for="original">Original</label><br>
+              <input type="radio" id="fakeradio" name="originality" value="fake">
+              <label for="fake">fake</label><br>
+  
+
+          <input type="submit" name="feedbacksubmit" onclick="document.getElementById('id03').style.display='none';">
+      
+
+        <br><br>
+
+
+      </div>
+      <!--
+      <footer class="w3-container w3-teal">
+        <p>Modal Footer</p>
+      </footer>-->
+    </div>
+  </div>
+
+  <!-- Pagination
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+    </div>
+  </div>
+-->
+ 
+  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
+   <!-- Images of Me -->
+  <div class="w3-row-padding w3-padding-16" id="about">
+    <div class="w3-col m6">
+    </div>
+    <div class="w3-col m6">
+    </div>
+  </div>
+
+    
+    <!-- Progress bars / Skills 
+    <p>NAME OF THE MEDICINE</p>
+     <form>
+        <input type="text" id="fname" name="fname"><br>
+    </form>
+    <p>NAME OF THE MANUFACTURED COMPANY</p>
+    <form>
+        <input type="text" id="fname" name="fname"><br>
+    </form>
+    <p>POWER OF THE TABLET</p>
+    <form>
+       <input type="number">
+    </form>
+    
+    <p>
+      <button class="w3-button w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom">
+        <input type="file" id="myFile" name="filename">
+      </button>
+
+    </p>
+    <hr>
+-->
+    <div class="container">
+      <h1><b>VERIFICATION DETAILS</b></h1>
+  <form action="/verify" method="post">
+    <label for="subject"><b>UPLOAD YOUR TABLET PHOTO</b></label>
+    <br>
+    <br>
+    <!--<input type="file" id="myFile" name="filename">-->
+
+    <label for="nameofmedicine"><b>Name of the medicine:</b></label>
+      <input type="text" placeholder="Enter Name of the medicine" name="nameofmedicine" required>
+    <label for="details"><b>Details of the medicine:</b></label>
+      <input type="text" placeholder="Enter composition" name="details" required>
+      <label for="typeofmedicine"><b>Type:</b></label><br><br>
+
+      <input type="radio" name="typeofmedicine">
+      <label for="typeofmedicine" value="syrup">Syrup &nbsp;</label>
+      
+       <input type="radio" name="typeofmedicine">
+      <label for="typeofmedicine" value="tablet">Tablet</label><br><br>
+     
+    <label for="manufacturer"><b>Manufacturer:</b></label>
+      <input type="text" placeholder="Enter Name of the Manufacturer" name="manufacturer">
+
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+<br>
+
+   <!-- Contact Section -->
+  <div class="w3-container w3-padding-large w3-grey">
+    <h4 id="contact"><b>HELP LINE</b></h4>
+    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
+    <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+        <p>supplychain@email.com</p>
+      </div>
+      <div class="w3-third w3-teal">
+        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
+        <p>Tamilnadu, India</p>
+      </div>
+      <div class="w3-third w3-dark-grey">
+        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+        <p>+91 9876543210</p>
+      </div>
+    </div>
+    <hr class="w3-opacity">
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>NAME</label>
+        <input class="w3-input w3-border" type="text" name="Name" required>
+      </div>
+      <div class="w3-section">
+        <label>EMAIL</label>
+        <input class="w3-input w3-border" type="text" name="Email" required>
+      </div>
+      <div class="w3-section">
+        <label>MESSAGE</label>
+        <input class="w3-input w3-border" type="text" name="Message" required>
+      </div>
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Send Message</button>
+    </form>
+  </div>
+
+
+<script >
+
+  var x=0;
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+
+function showFileName() {
+   var fil = document.getElementById("myFile");
+   document.getElementById("myFile").value=fil.value;
+}
+
+// Get the modal
+var modal = document.getElementById('id03');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+
+
+//modal writeup
+
+function myFunc(id)
+            {
+                alert(id);
+                document.getElementById('mednamee').innerHTML="<b>Name:</b> "+(document.getElementById(id).children[0]).innerHTML;
+                document.getElementById('medtypee').innerHTML="<b>Type:</b> "+(document.getElementById(id).children[3]).innerHTML;
+                document.getElementById('meddesc').innerHTML="<b>Type:</b> "+(document.getElementById(id).children[2]).innerHTML;
+                if(document.getElementById('originalradio').checked)
+                                    {
+                          (document.getElementById(id).children[1]).innerHTML='Originality: fake';
+     
+                             }
+                else
+                    {
+                        (document.getElementById(id).children[1]).innerHTML='Originality: Original';
+    
+                       }
+
+
+
+                }
+
+
+
+
+
+
+//provide feedback
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
