@@ -125,10 +125,10 @@ input[type=submit]:hover {
 
       <div class="w3-container w3-white" id={{rows.index(row)+1}} onclick="document.getElementById('id03').style.display='block';myFunc(this.id);">
         <!--<p ><b>{{rows.index(row)+1}}</b></p>-->
-        <p id="medname" ><b>{{row['med_name']}}</b></p>
+        <p id="medname" ><b>Name:  {{row['med_name']}}</b></p>
         <p id="original">Originality:</p>
-        <p id="medman"  >{{row['manufacturer']}}</p>
-        <p id="medtype"  >{{row['type']}}</p>
+        <p id="medman"  >Manufacturer: {{row['manufacturer']}}</p>
+        <p id="medtype"  >Type: {{row['type']}}</p>
       </div>
     </div>
     
@@ -318,10 +318,10 @@ window.onclick = function(event) {
 
 function myFunc(id)
             {
-                alert(id);
+                
                 document.getElementById('mednamee').innerHTML="<b>Name:</b> "+(document.getElementById(id).children[0]).innerHTML;
                 document.getElementById('medtypee').innerHTML="<b>Type:</b> "+(document.getElementById(id).children[3]).innerHTML;
-                document.getElementById('meddesc').innerHTML="<b>Type:</b> "+(document.getElementById(id).children[2]).innerHTML;
+                document.getElementById('meddesc').innerHTML="<b>Manufacturer:</b> "+(document.getElementById(id).children[2]).innerHTML;
                 if(document.getElementById('originalradio').checked)
                                     {
                           (document.getElementById(id).children[1]).innerHTML='Originality: fake';
